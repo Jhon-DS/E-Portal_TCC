@@ -1,0 +1,258 @@
+:root {
+  /* Usa as variáveis do projeto se existirem, com fallback */
+  --main-red: var(--cor-principal, #a80000);
+  --main-red-dark: var(--cor-principal-escura, #800000);
+  --bg-page: #e5e5e5;
+  --card-bg: #ffffff;
+  --muted-border: #e6e6e9;
+  --text: #1f1f1f;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(24, 23, 31, 0.08);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  background: var(--bg-page);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Container centralizado, alinhado com o padrão das páginas */
+.container {
+  max-width: 1100px;
+  margin: 24px auto 48px auto;
+  padding: 0 24px;
+}
+
+/* Cabeçalho no padrão com faixa vermelha */
+.header {
+    text-align: center;
+  background: var(--main-red);
+  color: #fff;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 20px 24px 16px 24px;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.header p {
+  margin-top: 6px;
+  opacity: .9;
+  font-size: 1rem;
+}
+
+/* Cartões brancos com sombra leve */
+.card {
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+
+/* Grids de formulário */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grupos e labels */
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Campos */
+input[type="text"],
+select,
+textarea {
+    resize: none;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--muted-border);
+  border-radius: 10px;
+  font-size: 15px;
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  outline: none;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--main-red);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--main-red) 60%, transparent);
+}
+
+/* Textarea no padrão */
+textarea {
+  resize: none;
+  min-height: 180px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+}
+
+/* Checkboxes em linha */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+/* Botões */
+#submitBtn{
+  background: var(--main-red);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+
+#submitBtn:hover{
+  background: var(--main-red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+#submitBtn:disabled {
+  background: #c7c7c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Status/feedback */
+.result {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  display: none;
+  animation: slideDown .25s ease;
+  font-size: 0.95rem;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result.success {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.result.error {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+/* Bloco de exemplos */
+.examples {
+  background: #f7f7f8;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 16px;
+  border: 1px solid #eee;
+}
+
+.examples h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Código de exemplo */
+.example-code {
+  background: #1f2937;
+  color: #e5e7eb;
+  padding: 14px;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+  font-size: 14px;
+  margin: 10px 0;
+  overflow-x: auto;
+}
+
+/* Indicadores de conexão */
+.status {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.status.connected {
+  background: #e6f6ea;
+  color: #1d6b33;
+  border: 1px solid #bfe7cc;
+}
+
+.status.disconnected {
+  background: #fde8e8;
+  color: #7a1e1e;
+  border: 1px solid #f5c2c2;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  color: var(--main-red);
+  font-size: 15px;
+}
+.loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+@keyframes dots {
+  0%, 20% { color: rgba(168, 0, 0, 0); }
+  40%     { color: rgba(168, 0, 0, 1); }
+  60%,100%{ color: rgba(168, 0, 0, 0); }
+}
+.examples p {
+    color: #1f2937;
+}
+.card h3 {
+    color: #333;
+}
+.text-icons {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}

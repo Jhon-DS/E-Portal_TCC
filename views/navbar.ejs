@@ -1,0 +1,64 @@
+<!-- Botão flutuante (mobile) para ABRIR -->
+<button id="btnOpen" class="btn-open" aria-label="Abrir menu" aria-expanded="false"></button>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+<!-- Botão flutuante (mobile) para ABRIR -->
+<button id="btnOpen" class="btn-open" aria-label="Abrir menu" aria-expanded="false"></button>
+<div class="overlay" id="overlay" aria-hidden="true"></div>
+
+<aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+    <div class="sb-header">
+        <div class="logo" aria-hidden="true"><img src="imgs/eportal.png" alt=""></div>
+        <div class="brand">Portal</div>
+        <div class="sb-actions" aria-hidden="false">
+            <!-- Botão para COLAPSAR/EXPANDIR a sidebar -->
+            <button id="btnCollapse" class="btn" title="" aria-label=""
+                aria-expanded="true"><img id="expand_icon" class="expand_icon" src="imgs/nav_icons/expandir_preto.png" alt=""></button>
+        </div>
+    </div>
+    <nav id="nav">
+        <ul class="menu">
+            <!--Avisos Gerais-->
+            <li class="nav-item">
+                <a class="nav-link" href="/home">
+                    <span class="icon"><img src="imgs/nav_icons/avisos.png" alt="">  </span>
+                    <span class="label">Avisos Gerais</span>
+                </a>
+            </li>
+            <!--Cursos-->
+            <li class="nav-item has-sub" tabindex="0">
+                <a class="nav-link" href="/cursos">
+                    <span class="icon"><img src="imgs/nav_icons/cursos.png" alt=""></span>
+                    <span class="label">Cursos</span>
+                </a>
+            </li>
+            <!--Projetos-->
+            <li class="nav-item has-sub" tabindex="0">
+                <a class="nav-link" href="/projetos">
+                    <span class="icon"><img src="imgs/nav_icons/projetos.png" alt="">  </span>
+                    <span class="label">Projetos</span>
+                    
+                </a>
+            </li>
+            <!--Vagas de Estágio-->
+            <li class="nav-item has-sub" tabindex="0">
+                <a class="nav-link" href="/estagios">
+                    <span class="icon"><img src="imgs/nav_icons/estagios.png" alt=""> </span>
+                    <span class="label">Vagas de Estágio</span>
+                </a>
+            </li>
+              <% if (nivel === 'coordenador') { %>
+            <!--Cadastro de Usuários (apenas para coordenadores)-->
+            <li class="nav-item has-sub ">
+                <a class="nav-link" href="/cadastro">
+                    <span class="icon"><img class="cadastro"src="imgs/nav_icons/cadastro.png" alt="">  </span>
+                    <span class="label">Cadastro de Usuários</span>
+                </a>
+                <div class="submenu" role="menu" aria-label="Relatórios">
+                    <a href="#" role="menuitem">Cadastro de Usuários</a>
+                </div>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+    <div class="sb-footer">ETEC de Poá</div>
+</aside>

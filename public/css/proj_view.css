@@ -1,0 +1,133 @@
+/* Reset mínimo */
+* {
+    box-sizing: border-box;
+     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
+
+/* Layout geral */
+.proj-container {
+    margin-left: 120px;
+    display: flex;
+    gap: 22px;
+    padding: 36px;
+    align-items: flex-start;
+    background: #e6e6e6;
+    min-height: 100vh;
+}
+
+/* Bloco esquerdo (informações) */
+.proj-left {
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
+    border: 1px solid #cfcfcf;
+    border-radius: 20px;
+    width: 44%;
+    background: transparent;
+}
+
+.proj-left-header {
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+    position: relative;
+    height: 300px;
+    color: #fff;
+    padding: 18px 22px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+}
+
+.proj-left-header .proj-header-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     
+    object-position: top;  
+    z-index: 0;
+}
+
+.cabeçalho {
+    font-weight: bold;
+    color: #fff;
+    padding: 0px;
+    background-color: #b30000;
+}
+
+.proj-left-header h1,
+.proj-left-header .proj-tags {
+    position: relative;
+    z-index: 1;
+}
+
+.proj-left-header h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 24px;
+}
+
+.proj-tags {
+    margin-top: 10px;
+}
+
+/* Card de conteúdo */
+.proj-left-card {
+    border-radius: 20px;
+    background: #fff;
+    min-height: 380px;
+}
+
+.proj-left-card h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.proj-desc {
+    border-radius: 20px;
+    padding: 10px 20px 20px 20px;
+}
+.proj-desc p{
+     color: #444;
+    line-height: 1.5;
+}
+
+/* Layout da área vermelha: grid 2x2 */
+.proj-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px 24px;
+    padding: 12px 18px;
+    align-items: start;
+    color: #fff;
+}
+
+/* cada item ocupa uma célula do grid */
+.proj-info-grid .info-item {
+    padding: 0;
+}
+
+/* títulos e textos dentro do painel vermelho */
+.cabeçalho .info-item h3 {
+    margin: 0 0 6px 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.95);
+    font-weight: 600;
+}
+.cabeçalho .info-item p {
+    margin: 0;
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+}
+
+/* responsivo: empilha em 1 coluna em telas pequenas */
+@media (max-width: 700px) {
+    .proj-info-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+}
+
+.fab {
+    display: none;
+}

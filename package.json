@@ -1,0 +1,26 @@
+{
+  "name": "projeto_eportal-main",
+  "version": "0.1.0",
+  "description": "TCC - E-Portal",
+  "license": "ISC",
+  "author": "Kairos",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --env-file=.env.prod index.js",
+    "dev": "nodemon  --env-file=.env.dev index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.5",
+    "papaparse": "^5.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

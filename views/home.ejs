@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/avisos.css">
+  <link rel="stylesheet" href="css/rightbar.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Inicial</title>
+</head>
+
+<body class="sidebar-collapsed">
+
+  <!-- SIDEBAR -->
+  <%- include('navbar') %>
+
+    <!-- Feed principal -->
+    <div class="feed">
+      <div class="feed-inner">
+        <% if (avisos && avisos.length > 0) { %>
+        <% avisos.forEach(function(aviso) { %>
+        <div class="aviso-card" aviso-id="<%= aviso.ID_Aviso %>">
+          <div class="aviso-header">
+            <img class="aviso-autor-foto" src="<%= aviso.autorFoto || '/imgs/profile_icons/usuario.png' %>" 
+            style="width:40px; height:40px; object-fit:cover; border-radius:50%;" class="icone-autor">
+            <span class="aviso-nome"><%= aviso.Autor || aviso.ID_Coordenadores || 'Autor' %></span>
+            <span class="aviso-data"><%= aviso.Data_Aviso_formatada || '00/00/0000' %></span>
+          
+          </div>
+          <div class="aviso-capa-area">
+            <% if (aviso.Capa) { %>
+            <img src="<%= aviso.Capa %>" alt="Capa do aviso" class="aviso-capa-img" />
+            <% } else { %>
+            <div class="aviso-capa-placeholder"></div>
+            <% } %>
+            <% if (nivel === 'coordenador') { %>
+            <button class="aviso-editar-btn" title="Editar aviso">
+              <img src="imgs/avisos/edit.png" alt="Editar" />
+            </button>
+            <% } %>
+          </div>
+          <div class="aviso-titulo">
+            <%= aviso.Titulo || 'Título do aviso' %>
+          </div>
+          <div class="aviso-conteudo">
+            <%= aviso.Conteudo || '' %>
+          </div>
+        </div>
+        <% }); %>
+        <% } else { %>
+        <div class="post">Nenhum aviso encontrado.</div>
+        <% } %>
+      </div>
+    </div>
+
+    <%- include('rightbar') %>
+
+     <!-- Modal para criar novo post -->
+
+    <div id="modal-post" class="modal-post">
+      <div class="modal-content">
+        <div class="head-modal">
+          <h2>Novo Aviso</h2>
+        </div>
+        <form id="form-post" autocomplete="off" enctype="multipart/form-data" action="/upload" method="post">
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="title" required class="input-modal" maxlength="25"/>
+
+          <label for="conteudo">Conteúdo:</label>
+          <textarea id="conteudo" name="text" maxlength="500" required class="input-modal"></textarea>
+          <div class="text-limit-hint"><span id="conteudo-count">0</span>/500</div>
+
+          <label for="imagem">Imagem:</label>
+          <input type="file" id="imagem" name="arquivo" accept="image/*" class="input-modal" />
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-modal">Postar</button>
+            <button type="button" id="btn-cancelar-modal" class="btn-modal btn-cancelar">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Edição/Exclusão de Aviso -->
+    <div id="modal-editar-aviso" class="modal-edit" aria-hidden="true">
+      <div class="modal-edit-content">
+        <div class="modal-edit-header">
+          <h2>Gerenciar aviso</h2>
+        </div>
+        <div class="modal-edit-body">
+          <form id="form-editar-aviso" method="POST" action="/avisos/editar">
+            <input type="hidden" name="id" id="edit-id">
+            <label for="edit-titulo">Título</label>
+            <input type="text" id="edit-titulo" name="titulo" class="input-modal" required maxlength="25">
+            <label for="edit-conteudo">Conteúdo</label>
+            <textarea id="edit-conteudo" name="conteudo" class="input-modal" rows="5" maxlength="500" required></textarea>
+            <div class="modal-edit-actions">
+              <button type="submit" class="btn-modal">Salvar</button>
+              <button type="button" id="btn-cancelar-edicao" class="btn-modal btn-cancelar">Cancelar</button>
+            </div>
+          </form>
+
+          <form id="form-excluir-aviso" method="POST" action="/avisos/excluir" class="modal-delete-inline">
+            <input type="hidden" name="id" id="delete-id">
+            <button type="submit" id="btn-excluir-aviso" class="btn-modal btn-danger">Excluir aviso</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="javascript/home.js"></script>
+    <script src="javascript/sidebar.js"></script>
+    <script src="javascript/rightbar.js"></script>
+    <script src="javascript/avisos.js"></script>
+</body>
+
+</html>

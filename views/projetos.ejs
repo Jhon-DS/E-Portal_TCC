@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="stylesheet" href="css/rightbar.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/projetos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos</title>
+</head>
+<body class="sidebar-collapsed">
+  <%- include('navbar') %>
+
+  
+  <div class="container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img class="img-projeto" src="imgs/projetos/atletica.jpg" alt="Atlética ETEC">
+      <div class="card-content">
+        <h3>Atlética ETEC</h3>
+        <p class="resumo-label">Esportes, saúde e integração entre as turmas.</p>
+      </div>
+      <button class="btn-ingressar" onclick="window.location.href='/proj_view1'">
+        <img src="imgs/projetos/entrar.png" alt="Ingressar" class="icon-ingressar"/>
+        Acessar
+      </button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img class="img-projeto" src="imgs/projetos/rpg.jpg" alt="Clube de RPG">
+      <div class="card-content">
+        <h3>Clube de RPG</h3>
+        <p class="resumo-label">Campanhas, one-shots e criação de mundos.</p>
+      </div>
+      <button class="btn-ingressar" id="btn-ingressar" onclick="window.location.href='/proj_view2'">
+        <img src="imgs/projetos/entrar.png"  alt="Ingressar" class="icon-ingressar"/>
+        Acessar
+      </button>
+    </div>
+    
+    <!-- Card 3 -->
+    <div class="card">
+      <img class="img-projeto" src="imgs/projetos/artes.jpg" alt="Clube de Artes">
+      <div class="card-content">
+        <h3>Clube de Artes</h3>
+        <p class="resumo-label">Desenho, pintura e exposições internas.</p>
+      </div>
+      <button class="btn-ingressar" onclick="window.location.href='/proj_view3'">
+        <img src="imgs/projetos/entrar.png" alt="Ingressar" class="icon-ingressar"/>
+        Acessar
+      </button>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <img class="img-projeto" src="imgs/projetos/estudos.jpg" alt="Grupo de Estudos">
+      <div class="card-content">
+        <h3>Grupo de Estudos</h3>
+        <p class="resumo-label">Monitoria, reforço e preparação para provas.</p>
+      </div>
+      <button class="btn-ingressar" onclick="window.location.href='/proj_view4'">
+        <img src="imgs/projetos/entrar.png" alt="Ingressar" class="icon-ingressar"/>
+        Acessar
+      </button>
+    </div>
+  </div>
+<%- include('rightbar') %>
+
+ <!-- Modal para criar novo post -->
+
+    <div id="modal-post" class="modal-post">
+      <div class="modal-content">
+        <div class="head-modal">
+          <h2>Adicionar Novo Projeto</h2>
+        </div>
+        <form id="form-post" autocomplete="off" enctype="multipart/form-data" action="/upload" method="post">
+          <label for="titulo">Nome do Projeto:</label>
+          <input type="text" id="titulo" name="title" required class="input-modal" maxlength="25" />
+
+          <label for="resumo">Resumo do Projeto:</label>
+          <textarea id="resumo" name="resumo" required class="input-modal" maxlength="100"></textarea>
+
+          <label for="conteudo">Descrição do Projeto:</label>
+          <textarea id="conteudo" name="text" required class="input-modal" maxlength="500"></textarea>
+
+          <label for="imagem">Imagem:</label>
+          <input type="file" id="imagem" name="arquivo" accept="image/*" class="input-modal" />
+
+          <div class="modal-actions">
+            <button type="submit" class="btn-modal">Postar</button>
+            <button type="button" id="btn-cancelar-modal" class="btn-modal btn-cancelar">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<script src="javascript/rightbar.js"></script>
+  <script src="javascript/projetos.js"></script>
+<script src="javascript/sidebar.js"></script>
+</body>
+</html>

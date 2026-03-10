@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Docentes e Discentes</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+</head>
+<body class="sidebar-collapsed">
+
+     <%- include('navbar') %>
+
+    <div class="container">
+        <div class="header">
+            <h1> Cadastro de Discentes e Docentes</h1>
+            <p>Insira os dados dos discentes/docentes para adiciona-los ao banco de dados</p>
+            <div id="dbStatus" class="status disconnected">
+                🔴 Verificando conexão com o Banco de Dados...
+            </div>
+        </div>
+
+        <div class="card">
+            <form id="importForm">
+                <div class="form-group">
+                    <label for="tableData"><img src="imgs/cadastro/dados.png" class="text-icons"> Dados da Tabela:</label>
+                    <textarea id="tableData" name="tableData" rows="12" required 
+placeholder="Cole aqui os dados da tabela...
+
+=== EXEMPLOS ===
+Nome,Telefone,Email,Senha,ID_Alunos,Data_Nasc,Sexo,ID_Turmas
+Ana Silva,11 98765-4321,ana.silva@email.com,ana123,10001,2010-03-15,Feminino,2
+João Santos,11 99876-5432,joao.santos@email.com,joao123,10002,2009-07-22,Masculino,1
+Maria Oliveira,11 99123-4567,maria.oliveira@email.com,maria123,10003,2011-11-08,Feminino,6
+"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="hasHeader" name="hasHeader" checked>
+                        <label for="hasHeader" style="margin-bottom: 0;"> Primeira linha contém cabeçalho</label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <img src="imgs/cadastro/import.png" class="text-icons"> Cadastrar dados
+                </button>
+            </form>
+
+            <div id="result" class="result"></div>
+        </div>
+
+        <div class="card">
+            <h3><img src="imgs/cadastro/dicas.png" class="text-icons"> Como Usar:</h3>
+            <div class="examples">
+                <p><strong>1.</strong> Cole os dados no formato tabular</p>
+                <p><strong>2.</strong> Marque se a primeira linha é cabeçalho</p>
+                <p><strong>3.</strong> Clique em "Cadastrar dados"</p>
+                
+                <div class="example-code">
+// Formato recomendado (com cabeçalho):<br>
+Nome,Telefone,Email,Senha,ID_Alunos,Data_Nasc,Sexo<br>
+Ana Silva,11 98765-4321,ana.silva@email.com,ana123,10001,2010-03-15,Feminino
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/cadastro.js"></script>
+    <script src="javascript/sidebar.js"></script>
+</body>
+</html>

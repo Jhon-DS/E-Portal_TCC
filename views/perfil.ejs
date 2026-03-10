@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/perfil.css">
+</head>
+
+<body class="sidebar-collapsed">
+  <%- include('navbar') %>
+
+  <main class="perfil-container">
+    <!-- Card principal -->
+    <section class="perfil-card">
+      <div class="perfil-topbar"></div>
+
+      <div class="perfil-header">
+        <div class="perfil-user">
+
+          
+          <div class="perfil-avatar-container" style="position: relative; display: inline-block;">
+            <img class="perfil-avatar" src="<%= user.Foto || '/imgs/profile_icons/usuario.png' %>" alt="Avatar do usuário" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
+
+            <!-- Form e label com ícone de caneta -->
+            <form id="uploadForm" action="/upload-foto" method="POST" enctype="multipart/form-data" style="position:absolute; bottom:0; right:0;">
+              <label for="fotoInput" style="cursor:pointer;">
+                <span style="
+                  display:flex; 
+                  align-items:center; 
+                  justify-content:center; 
+                  width:30px; 
+                  height:30px; 
+                  border-radius:50%; 
+                  background-color:#000; 
+                  color:#fff; 
+                  font-size:16px;
+                  border:2px solid #fff;
+                ">✎</span>
+              </label>
+              <input type="file" id="fotoInput" name="foto" accept="image/*" style="display:none;">
+            </form>
+          </div>
+          
+
+          <div class="perfil-id">
+            <h2 class="perfil-nome"><%= (user && (user.Nome || user.nome)) || 'Usuário' %></h2>
+            <div class="perfil-meta">
+              <span>
+                Nasc.:
+                <% if (user && user.Data_Nasc) { %>
+                  <%= user.Data_Nasc_formatada || '00/00/0000'%>
+                <% } else { %>—<% } %>
+              </span>
+              <span>•</span>
+              <span>RM: <%= (user && (user.ID_Alunos || user.ID_Professores || user.ID_Coordenadores)) || '—' %></span>
+              <span>•</span>
+              <span><%= (user && (user.Sexo || user.sexo)) || '—' %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="perfil-chips">
+          <button type="button" id="chip-contato" class="chip active">Contato</button>
+          <button type="button" id="chip-curso" class="chip">
+            <% if(user && user.ID_Alunos) {%> Curso e Projetos
+          <% } else { %>Projetos<% } %>
+          </button>
+        </div>
+      </div>
+
+      <!-- Seção expansível: Contato -->
+      <section id="sec-contato" class="perfil-section" aria-hidden="false">
+        <div class="perfil-section-inner">
+          <div class="grid-2">
+            <div class="field">
+              <label>E-mail</label>
+              <input type="email" class="input" value="<%= (user && (user.Email || user.email)) || '' %>" disabled>
+            </div>
+            <div class="field">
+              <label>Telefone</label>
+              <input type="text" class="input" value="<%= (user && (user.Telefone || user.telefone)) || '' %>" disabled>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção expansível: Curso e Projeto -->
+      <section id="sec-curso" class="perfil-section" aria-hidden="true">
+        <div class="perfil-section-inner">
+          <div class="grid-2">
+            <div class="field">
+              <label>Projeto</label>
+              <input type="text" class="input" value="<%= (user && (user.Projeto || user.Nome_Projeto)) || 'Nenhum' %>" disabled>
+            </div>
+            <% if(user.ID_Alunos != null) { %>
+            <div class="field">
+              <label>Curso</label>
+              <input type="text" class="input" value="<%= (turma && (turma.Curso)) || 'A definir' %>" disabled>
+            </div>
+          </div>
+          <div class="field">
+            <label>Turma</label>
+            <input type="text" class="input" value="<%= (turma && (turma.Serie)) %> - <%= (turma && (turma.Turno)) %> " disabled>
+          </div>
+        </div>
+        <% } %>
+      </section>
+
+      <!-- Senha (fora das expansões) -->
+      <section class="perfil-section senha-wrapper" aria-hidden="false">
+        <div class="perfil-section-inner">
+          <div class="senha-row">
+            <div class="field" style="flex:1;">
+              <label>Senha</label>
+              <input type="password" class="input" id="senha-input" value="********" disabled>
+            </div>
+            <button type="button" id="btn-editar" class="btn btn-danger">Editar</button>
+            <button type="button" id="btn-cancelar" class="btn btn-ghost" style="display:none;">Cancelar</button>
+            <button type="submit" id="btn-salvar" class="btn" style="display:none;">Salvar</button>
+          </div>
+
+          <div id="troca-senha-area" class="troca-senha" style="display:none;">
+            <form id="senhaForm" action="/perfil/alterar-senha" method="post">
+              <div class="grid-3">
+                <div class="field">
+                  <label>Senha atual</label>
+                  <input type="password" name="currentPassword" id="senha-atual-input" class="input" autocomplete="current-password" required>
+                </div>
+                <div class="field">
+                  <label>Nova senha</label>
+                  <input type="password" name="newPassword" id="nova-senha" class="input" autocomplete="new-password" required>
+                </div>
+                <div class="field">
+                  <label>Confirmar nova senha</label>
+                  <input type="password" name="confirmPassword" id="confirma-senha" class="input" autocomplete="new-password" required>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="javascript/perfil.js"></script>
+  <script src="javascript/sidebar.js"></script>
+
+  
+  <script>
+    const fotoInput = document.getElementById('fotoInput');
+    const form = document.getElementById('uploadForm');
+
+    // Envia automaticamente ao escolher a imagem
+    fotoInput.addEventListener('change', () => {
+      if (fotoInput.files.length > 0) {
+        form.submit();
+      }
+    });
+  </script>
+  
+
+</body>
+</html>
