@@ -62,6 +62,17 @@ O sistema possui diferentes níveis de acesso e funcionalidades, incluindo:
 
 ---
 
+# ▶️ Executando o Projeto
+
+1. Clone o repositório.
+2. Instale as Dependências `npm install`.
+3. Configure o banco de dados. Importe o arquivo `.sql` presente na pasta do projeto utilizando o phpMyAdmin ou qualquer outra ferramenta de preferência.
+4. Inicie o Servidor: `npm run dev`.
+5. Acesse `http://localhost:8080/login` em seu navegador.<br>
+🔑 Login de Administrador:
+  Usuario `23040`
+  Senha `54321`
+
 # 🖥️ Demonstração do Sistema
 
 ### Tela de Login
@@ -90,13 +101,13 @@ Página onde o usuário pode visualizar suas informações pessoais, que são pu
 
 ![perfil](https://github.com/user-attachments/assets/436a3723-b4a3-4f0c-bff5-b9a1f3a042d2)
 
-### 📚 Postagem de Avisos por Curso
+### Postagem de Avisos por Curso
 Página destinada à criação e gerenciamento de avisos específicos para cada curso.  
 Administradores podem visualizar e publicar avisos para diferentes cursos, enquanto os alunos visualizam apenas os avisos relacionados ao **seu próprio curso**, garantindo uma comunicação mais direcionada.
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a59e3b10-8d7f-48c9-b5ea-180b16f13791"/>
 
-### 💼 Postagem de Estágios
+### Postagem de Estágios
 Área do sistema voltada para a publicação de **oportunidades de estágio**.  
 Administradores podem cadastrar novas vagas, permitindo que os alunos acompanhem oportunidades relevantes para sua formação e inserção no mercado de trabalho.
 
